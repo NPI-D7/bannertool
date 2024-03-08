@@ -20,4 +20,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bannertool
-          path: build cmake-build-debug/bannertool
+          path: cmake-build-debug/bannertool
