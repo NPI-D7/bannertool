@@ -16,8 +16,3 @@ jobs:
         run: |
           cmake -B cmake-build-debug
           cmake --build cmake-build-debug
-      - name: upload artifact 
-        uses: actions/upload-artifact@v2
-        with:
-          name: bannertool
-          path: cmake-build-debug/bannertool
