@@ -113,11 +113,14 @@ void* lz11_compress(u32* size, void* input, u32 inputSize) {
 
     if(compressedLength % 4 != 0) {
         u32 padLength = 4 - (compressedLength % 4);
-        u8 pad[padLength];
+        // Small patch to prevent msvc error
+        u8* pad = new u8[padLength];
         memset(pad, 0, (size_t) padLength);
 
         ss.write((char*) pad, padLength);
         compressedLength += padLength;
+        // Need to delete as not dynamic
+        delete[] pad;
     }
 
     void* buf = malloc((size_t) compressedLength);
