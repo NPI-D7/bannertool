@@ -1,0 +1,18 @@
+name: Gitea Actions Demo
+run-name: Build-Test bannertool
+on: [push]
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Tools
+        run: |
+          apt-get update
+          apt-get install build-essential cmake
+      - name: Build
+        run: |
+          cmake -B cmake-build-debug
+          cmake --build cmake-build-debug
