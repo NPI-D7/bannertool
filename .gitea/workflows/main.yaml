@@ -3,16 +3,18 @@ run-name: Build-Test bannertool
 on: [push]
 
 jobs:
-  Build:
+  linux-x64:
     runs-on: ubuntu-latest
+    container: dockcross/linux-x64
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install Tools
-        run: |
-          apt-get update -y
-          apt-get install build-essential cmake -y
       - name: Build
         run: |
-          cmake -B cmake-build-debug
-          cmake --build cmake-build-debug
+          dockcross cmake -B cmake-build-debug
+          dockcross cmake --build cmake-build-debug
+      - name: upload artifact 
+        uses: actions/upload-artifact@v2
+        with:
+          name: bannertool
+          path: cmake-build-debug/bannertool
