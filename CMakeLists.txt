@@ -33,3 +33,5 @@ target_compile_definitions(bannertool PUBLIC
 -DVERSION_MAJOR=${VERSION_MAJOR}
 -DVERSION_MINOR=${VERSION_MINOR}
 -DVERSION_MICRO=${VERSION_MICRO})
+
+install(TARGETS bannertool DESTINATION bin)
