@@ -3,16 +3,17 @@ run-name: Build-Test bannertool
 on: [push]
 
 jobs:
-  linux-x64:
+  linux-test:
     runs-on: ubuntu-latest
-    container: dockcross/linux-x64
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
         run: |
-          dockcross cmake -B cmake-build-debug
-          dockcross cmake --build cmake-build-debug
+          apt update -y
+          apt install build-essential cmake -y
+          cmake -B cmake-build-debug
+          cmake --build cmake-build-debug
       - name: upload artifact 
         uses: actions/upload-artifact@v2
         with:
